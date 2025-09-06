@@ -15,6 +15,8 @@ export class Book {
   year: number;
 }
 
+export const BookSchema = SchemaFactory.createForClass(Book);
+
 
 
 
