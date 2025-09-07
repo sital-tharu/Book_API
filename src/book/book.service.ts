@@ -20,6 +20,19 @@ export class BookService {
         return this.bookModel.findById(id).exec();
     }
 
+    async updateStudent(id: string, book: Partial<Book>): Promise<Book | null>{
+      const updated = await this.bookModel.findByIdAndUpdate(id, {
+        title: book.title ?? null,
+        author: book.author ?? null,
+        year: book.year ?? null
+      },{ overwrite: true, new: true});
+      return updated;
+      }
+    
+    
+    
+
+
    async update(id: string, book: Partial<Book>): Promise<Book | null> {
     return this.bookModel.findByIdAndUpdate(id, book, { new: true }).exec();
   } 
