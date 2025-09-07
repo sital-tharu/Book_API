@@ -15,4 +15,8 @@ export class BookService {
     async findAll(): Promise<Book[]> {
         return this.bookModel.find().exec();
     }
+
+    async findOne(id:string): Promise <Book |null> {
+        return this.bookModel.findById(id).exec();
+    }
 }
