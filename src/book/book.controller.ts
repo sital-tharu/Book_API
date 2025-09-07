@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post , Param} from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './book.schema';
 
@@ -15,4 +15,10 @@ export class BookController {
     async findAll(){
         return this.bookService.findAll();
     }
+
+    @Get(':id')
+    async findOne(@Param('id') id: string ){
+        return this.bookService.findOne(id);
+    }
+    
 }
