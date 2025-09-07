@@ -19,4 +19,9 @@ export class BookService {
     async findOne(id:string): Promise <Book |null> {
         return this.bookModel.findById(id).exec();
     }
+
+   async update(id: string, book: Partial<Book>): Promise<Book | null> {
+    return this.bookModel.findByIdAndUpdate(id, book, { new: true }).exec();
+  } 
+
 }
