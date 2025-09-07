@@ -12,4 +12,7 @@ export class BookService {
     async create(book: Book): Promise<Book> {
     return new this.bookModel(book).save();
 }
+    async findAll(): Promise<Book[]> {
+        return this.bookModel.find().exec();
+    }
 }
