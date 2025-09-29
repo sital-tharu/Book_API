@@ -9,11 +9,12 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal: true}),
-    GraphQLModule.forRoot<ApolloDriverConfig> ({
+    ConfigModule.forRoot({ isGlobal: true }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
+      playground: true,
 
     }),
     MongooseModule.forRoot(process.env.DATABASE_URI!),
@@ -22,7 +23,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
 function join(arg0: string, arg1: string): import("@nestjs/graphql").AutoSchemaFileValue | undefined {
   throw new Error('Function not implemented.');
 }
