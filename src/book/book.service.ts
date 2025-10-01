@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Book, BookDocument } from './book.schema';
 import { Model } from 'mongoose';
+import { createBookInput } from './dto/create-book.input';
 
 
 @Injectable()
@@ -9,8 +10,9 @@ export class BookService {
     constructor(
     @InjectModel(Book.name) private bookModel : Model<BookDocument>
     ){}
-    async create(book: Book): Promise<Book> {
-    return new this.bookModel(book).save();
+    async create(input: createBookInput): Promise<Book> {
+        const created = new this.bookModel(input);
+        return created.save();
 }
     async findAll(): Promise<Book[]> {
         return this.bookModel.find().exec();
