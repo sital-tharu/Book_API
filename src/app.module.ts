@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BookModule } from './book/book.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -24,7 +25,3 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
   providers: [AppService],
 })
 export class AppModule { }
-function join(arg0: string, arg1: string): import("@nestjs/graphql").AutoSchemaFileValue | undefined {
-  throw new Error('Function not implemented.');
-}
-

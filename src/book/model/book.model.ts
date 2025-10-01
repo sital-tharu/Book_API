@@ -4,7 +4,7 @@ import { ObjectType, Field, ID } from "@nestjs/graphql";
 
 @Schema()
 @ObjectType()
-export class Book extends Document {
+export class Book {
     @Field(() => ID)
     declare readonly _id: string;
     @Prop({ required: true })
@@ -21,3 +21,4 @@ export class Book extends Document {
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);
+export type BookDocument = Book & Document;

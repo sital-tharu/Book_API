@@ -1,13 +1,15 @@
 import { Body, Controller, Get, Post , Param, Patch , Delete, Put} from '@nestjs/common';
 import { BookService } from './book.service';
-import { Book } from './book.schema';
+import { Book } from './model/book.model';
+import { createBookInput } from './dto/create-book.input';
+import { updateBookInput } from './dto/update-book.input';
 
 @Controller('book')
 export class BookController {
     constructor(private readonly bookService: BookService){}
 
     @Post()
-    async createBook(@Body () data: Book){
+    async createBook(@Body () data: createBookInput){
     return this.bookService.create(data);
     }
 
@@ -21,19 +23,15 @@ export class BookController {
         return this.bookService.findOne(id);
     }
     
-    @Put(':id')
-  async updateStudent(@Param('id') id: string, @Body() data: Partial<Book>) {
-    return this.bookService.updateStudent(id, data);
+  @Put(':id')
+  async updateBook(@Param('id') id: string, @Body() data: updateBookInput) {
+    return this.bookService.update({ ...data, id: id });
   }
 
-    @Patch(':id')
-  async update(@Param('id') id: string, @Body() data: Partial<Book>) {
-    return this.bookService.update(id, data);
-  }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
-    return this.bookService.delete(id);
+  async removeBook(@Param('id') id: string) {
+    return this.bookService.remove(id);
   }
 
 }

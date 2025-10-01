@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Book, BookDocument } from './book.schema';
+import { Book, BookDocument } from './model/book.model';
 import { Model } from 'mongoose';
 import { createBookInput } from './dto/create-book.input';
 import { updateBookInput } from './dto/update-book.input';
