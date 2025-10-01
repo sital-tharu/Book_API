@@ -1,4 +1,6 @@
 import { Resolver } from '@nestjs/graphql';
 
 @Resolver()
-export class BookResolver {}
+export class BookResolver {
+    constructor 
+}
