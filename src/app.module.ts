@@ -16,7 +16,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
         name: 'global',
         ttl: 60,
         limit: 5,
-      }]
+      }],
+      errorMessage: 'Too many requests, please try again later.',
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
