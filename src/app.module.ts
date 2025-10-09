@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BookModule } from './book/book.module';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -28,7 +28,13 @@ import { APP_GUARD } from '@nestjs/core';
       playground: true,
 
     }),
-    MongooseModule.forRoot(process.env.DATABASE_URI!),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('DATABASE_URI'),
+      }),
+      inject: [ConfigService],
+    }),
     BookModule,
   ],
   controllers: [AppController],
